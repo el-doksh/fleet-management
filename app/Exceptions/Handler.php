@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Helpers\HttpStatusCodes;
 use App\Traits\APIResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -50,16 +51,23 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $exception) {
-                
+            // 
+        });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if($request->isJson()) {
+    
             if ($exception instanceof MethodNotAllowedHttpException) {
                 return $this->API_Response(false, HttpStatusCodes::HTTP_METHOD_NOT_ALLOWED, 'Wrong Http Method');
-            }
-            if ($exception instanceof NotFoundHttpException)  {
+            } else if ($exception instanceof NotFoundHttpException)  {
                 return $this->API_Response(false, HttpStatusCodes::HTTP_NOT_FOUND, 'URL not Found');
+            } else if ($exception instanceof ModelNotFoundException) {
+                return $this->API_Response(false, HttpStatusCodes::HTTP_NOT_FOUND, 'Item not Found');
             } else {
                 return $this->API_Response(false, HttpStatusCodes::HTTP_BAD_REQUEST, 'Bad Request');
             }
-
-        });
+        }  
     }
 }
