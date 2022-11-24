@@ -14,7 +14,9 @@ class TripResource extends JsonResource
      */
     public function toArray($request)
     {
-        $available_seats = $this->resource->bus->seats()->whereNotIn('id', $this->resource->seats->pluck('id')->toArray())->get();
+        $available_seats = $this->resource->bus->seats()
+                                ->whereNotIn('id', $this->resource->seats->pluck('seat_id')->toArray())
+                                ->get();
         return [
             'id' => $this->id,
             'date' => $this->date,
