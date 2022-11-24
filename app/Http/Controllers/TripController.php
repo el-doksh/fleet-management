@@ -31,8 +31,8 @@ class TripController extends Controller
             $selectedCitiesOrder = $trip->cities()->whereIn('cities.id', [$request->start_city_id, $request->end_city_id])->orderBy('order')->pluck('order')->toArray();
 
             //find all cities ids trip from start city to end city
-            $startCitiesIds = $trip->cities()->wherePivot('order', '<=', $selectedCitiesOrder[0])->orderBy('order')->pluck('cities.id')->toArray();
-            $endCitiesIds = $trip->cities()->wherePivot('order', '>=', $selectedCitiesOrder[1])->orderBy('order')->pluck('cities.id')->toArray();
+            $startCitiesIds = $trip->cities()->wherePivot('order', '<', $selectedCitiesOrder[1])->orderBy('order')->pluck('cities.id')->toArray();
+            $endCitiesIds = $trip->cities()->wherePivot('order', '>', $selectedCitiesOrder[0])->orderBy('order')->pluck('cities.id')->toArray();
             
             $tripSeat = TripSeat::where('trip_id', $trip->id)
                                 ->where('seat_id', $request->seat_id)
