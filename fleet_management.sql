@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2022 at 10:05 PM
+-- Generation Time: Nov 24, 2022 at 01:03 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.11
 
@@ -40,9 +40,9 @@ CREATE TABLE `buses` (
 --
 
 INSERT INTO `buses` (`id`, `name`, `license_number`, `created_at`, `updated_at`) VALUES
-(1, 'Bus 1', 'ABC-123', '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(2, 'Bus 2', 'ABC-456', '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(3, 'Bus 3', 'QWE-456', '2022-11-23 20:02:11', '2022-11-23 20:02:11');
+(1, 'Bus 1', 'ABC-123', '2022-11-23 23:03:19', '2022-11-23 23:03:19'),
+(2, 'Bus 2', 'ABC-456', '2022-11-23 23:03:19', '2022-11-23 23:03:19'),
+(3, 'Bus 3', 'QWE-456', '2022-11-23 23:03:19', '2022-11-23 23:03:19');
 
 -- --------------------------------------------------------
 
@@ -376,9 +376,9 @@ CREATE TABLE `trips` (
 --
 
 INSERT INTO `trips` (`id`, `date`, `bus_id`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-30 10:00:00', 1, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(2, '2022-12-01 10:00:00', 2, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(3, '2022-12-01 12:00:00', 3, '2022-11-23 20:02:11', '2022-11-23 20:02:11');
+(1, '2022-11-30 10:00:00', 1, '2022-11-23 23:03:19', '2022-11-23 23:03:19'),
+(2, '2022-12-01 10:00:00', 2, '2022-11-23 23:03:19', '2022-11-23 23:03:19'),
+(3, '2022-12-01 12:00:00', 3, '2022-11-23 23:03:19', '2022-11-23 23:03:19');
 
 -- --------------------------------------------------------
 
@@ -422,52 +422,12 @@ CREATE TABLE `trip_seats` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `trip_id` bigint(20) UNSIGNED NOT NULL,
   `seat_id` bigint(20) UNSIGNED NOT NULL,
+  `start_city_id` bigint(20) UNSIGNED NOT NULL,
+  `end_city_id` bigint(20) UNSIGNED NOT NULL,
   `booked_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `trip_seats`
---
-
-INSERT INTO `trip_seats` (`id`, `trip_id`, `seat_id`, `booked_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(2, 1, 2, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(3, 1, 3, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(4, 1, 4, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(5, 1, 5, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(6, 1, 6, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(7, 1, 7, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(8, 1, 8, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(9, 1, 9, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(10, 1, 10, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(11, 1, 11, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(12, 1, 12, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(13, 2, 13, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(14, 2, 14, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(15, 2, 15, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(16, 2, 16, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(17, 2, 17, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(18, 2, 18, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(19, 2, 19, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(20, 2, 20, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(21, 2, 21, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(22, 2, 22, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(23, 2, 23, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(24, 2, 24, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(25, 3, 25, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(26, 3, 26, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(27, 3, 27, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(28, 3, 28, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(29, 3, 29, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(30, 3, 30, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(31, 3, 31, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(32, 3, 32, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(33, 3, 33, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(34, 3, 34, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(35, 3, 35, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11'),
-(36, 3, 36, NULL, '2022-11-23 20:02:11', '2022-11-23 20:02:11');
 
 -- --------------------------------------------------------
 
@@ -491,8 +451,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '2022-11-23 20:02:10', '$2y$10$2sWQgOlrcH/X8i9zluJkQ.S4xm7cl8w0/9kKXfOFWPN5IEaE5z2Nm', NULL, '2022-11-23 20:02:10', '2022-11-23 20:02:10'),
-(2, 'sherif', 'sherifeldoksh8@gmai.com', '2022-11-23 20:02:10', '$2y$10$9.cVIpjLu31a/xNyVZbujuqKAKJR7ZlcVX/J/brnsFsUjp.BUfSHe', NULL, '2022-11-23 20:02:10', '2022-11-23 20:02:10');
+(1, 'admin', 'admin@admin.com', '2022-11-23 23:03:18', '$2y$10$64PbYxLm92h6PHcBmFDYyeXBUClNllG9RzwSQs4DIGfjlhpHxL8DO', NULL, '2022-11-23 23:03:19', '2022-11-23 23:03:19'),
+(2, 'sherif', 'sherifeldoksh8@gmai.com', '2022-11-23 23:03:19', '$2y$10$tRARZ.ixlrLVdXe8bIrNsOP2j867AXrI59vxCnbM/rM8Z1LPO8cla', NULL, '2022-11-23 23:03:19', '2022-11-23 23:03:19');
 
 --
 -- Indexes for dumped tables
@@ -569,8 +529,10 @@ ALTER TABLE `trip_cities`
 --
 ALTER TABLE `trip_seats`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `trip_seats_trip_id_seat_id_unique` (`trip_id`,`seat_id`),
-  ADD KEY `trip_seats_seat_id_foreign` (`seat_id`);
+  ADD UNIQUE KEY `trip_seats_trip_id_seat_id_start_city_id_end_city_id_unique` (`trip_id`,`seat_id`,`start_city_id`,`end_city_id`),
+  ADD KEY `trip_seats_seat_id_foreign` (`seat_id`),
+  ADD KEY `trip_seats_start_city_id_foreign` (`start_city_id`),
+  ADD KEY `trip_seats_end_city_id_foreign` (`end_city_id`);
 
 --
 -- Indexes for table `users`
@@ -635,7 +597,7 @@ ALTER TABLE `trip_cities`
 -- AUTO_INCREMENT for table `trip_seats`
 --
 ALTER TABLE `trip_seats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -670,7 +632,9 @@ ALTER TABLE `trip_cities`
 -- Constraints for table `trip_seats`
 --
 ALTER TABLE `trip_seats`
+  ADD CONSTRAINT `trip_seats_end_city_id_foreign` FOREIGN KEY (`end_city_id`) REFERENCES `cities` (`id`),
   ADD CONSTRAINT `trip_seats_seat_id_foreign` FOREIGN KEY (`seat_id`) REFERENCES `bus_seats` (`id`),
+  ADD CONSTRAINT `trip_seats_start_city_id_foreign` FOREIGN KEY (`start_city_id`) REFERENCES `cities` (`id`),
   ADD CONSTRAINT `trip_seats_trip_id_foreign` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`);
 COMMIT;
 

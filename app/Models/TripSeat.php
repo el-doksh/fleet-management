@@ -12,6 +12,8 @@ class TripSeat extends Model
     protected $fillable = [
         'trip_id',
         'seat_id',
+        'start_city_id',
+        'end_city_id',
         'booked_at',
     ];
 
@@ -23,6 +25,16 @@ class TripSeat extends Model
     public function seat()
     {
         return $this->belongsTo(BusSeat::class);
+    }
+
+    public function start_city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function end_city()
+    {
+        return $this->belongsTo(City::class);
     }
 
     public function scopeNotBooked($query)

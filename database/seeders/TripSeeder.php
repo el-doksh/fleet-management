@@ -91,19 +91,12 @@ class TripSeeder extends Seeder
             ],
         ];
         foreach ($trips as $trip) {
-            $new_trip = Trip::with('bus.seats')->create( Arr::except($trip, ['cities']) );
-            
+            $new_trip = Trip::create( Arr::except($trip, ['cities']) );
             foreach($trip['cities'] as $city) {
                 TripCity::create([
                     'trip_id' => $new_trip->id,
                     'city_id' => $city['city_id'],
                     'order' => $city['order'],
-                ]);
-            }
-            foreach ($new_trip->bus->seats as $seat) {
-                TripSeat::create([
-                    'trip_id' => $new_trip->id,
-                    'seat_id' => $seat->id,
                 ]);
             }
         }

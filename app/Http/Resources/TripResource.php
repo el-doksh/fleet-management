@@ -14,12 +14,14 @@ class TripResource extends JsonResource
      */
     public function toArray($request)
     {
+        $available_seats = $this->resource->bus->seats()->whereNotIn('id', $this->resource->seats->pluck('id')->toArray())->get();
         return [
             'id' => $this->id,
             'date' => $this->date,
             'cities' => CityResource::collection($this->cities),
             'bus' => new BusResource($this->bus),
-            'seats' => SeatResource::collection($this->seats),
+            'booked_seats' => SeatResource::collection($this->seats),
+            'available_seats' => AvailabeSeatResource::collection($available_seats),
         ];
     }
 }

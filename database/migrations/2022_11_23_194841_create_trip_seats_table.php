@@ -17,10 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('seat_id');
+            $table->unsignedBigInteger('start_city_id');
+            $table->unsignedBigInteger('end_city_id');
             $table->timestamp('booked_at')->nullable();
             $table->foreign('trip_id')->references('id')->on('trips');
             $table->foreign('seat_id')->references('id')->on('bus_seats');
-            $table->unique(['trip_id', 'seat_id']);
+            $table->foreign('start_city_id')->references('id')->on('cities');
+            $table->foreign('end_city_id')->references('id')->on('cities');
+            $table->unique(['trip_id', 'seat_id', 'start_city_id', 'end_city_id']);
             $table->timestamps();
         });
     }

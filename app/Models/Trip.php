@@ -26,7 +26,7 @@ class Trip extends Model
 
     public function seats()
     {
-        return $this->belongsToMany(BusSeat::class, TripSeat::class, 'trip_id', 'seat_id')->withPivot('booked_at');
+        return $this->hasMany(TripSeat::class, 'trip_id');
     }
     
 }
